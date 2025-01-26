@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  postgres-compose:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "15432:5432"
+    networks:
+      - postgres-compose-network
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./travel.sqlite:/app/travel.sqlite
+      - ./.pgpass:/app/.pgpass
+
+      
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "diego.castro@cefet-rj.br"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-compose
+    networks:
+      - postgres-compose-network
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+
+networks: 
+  postgres-compose-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  pgadmin-data:
