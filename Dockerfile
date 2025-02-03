@@ -1,4 +1,4 @@
-FROM postgres:latest
+FROM postgres:latest as postgres
 
 # Set the working directory
 WORKDIR /app

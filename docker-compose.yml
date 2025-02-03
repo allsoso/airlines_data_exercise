@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  postgres-compose:
+  postgres:
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,7 +23,7 @@ services:
     ports:
       - "16543:80"
     depends_on:
-      - postgres-compose
+      - postgres
     networks:
       - postgres-compose-network
     volumes:
