@@ -1,0 +1,14 @@
+CREATE DATABASE dw
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;
+
+
+DROP SCHEMA IF EXISTS stage CASCADE;
+CREATE SCHEMA stage AUTHORIZATION pg_database_owner;
+
+GRANT ALL ON SCHEMA stage TO pg_database_owner;
+GRANT USAGE ON SCHEMA stage TO public;
+
+GRANT ALL PRIVILEGES ON DATABASE dw TO postgres;

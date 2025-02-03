@@ -1,0 +1,2 @@
+DROP SCHEMA IF EXISTS stage CASCADE;
+CREATE SCHEMA stage AUTHORIZATION pg_database_owner;
